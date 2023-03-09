@@ -1,0 +1,40 @@
+import QtQuick 2.15
+import QtQuick.Window 2.15
+
+Window {
+    width: 640
+    height: 480
+    visible: true
+    title: qsTr("Hello World")
+    Rectangle{
+        id:stick
+        anchors{
+            horizontalCenter:parent.horizontalCenter
+            bottom:parent.bottom
+        }
+        height: 300
+        width:35
+        color:'grey'
+    }
+    Image{
+        id:wheel
+        anchors{
+            horizontalCenter:parent.horizontalCenter
+            verticalCenter:stick.top
+        }
+        source: './fan.png'
+        width: 220
+        height: 220
+        Behavior on rotation{
+            NumberAnimation{
+                duration:250
+            }
+        }
+
+    }
+    MouseArea{
+        anchors.fill:parent
+        onClicked:wheel.rotation=(wheel.rotation+90)
+    }
+
+}
